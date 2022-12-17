@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +29,7 @@ SECRET_KEY = "django-insecure-#$!md02f94onip$*ecn!yvco*-ufzpjt(9xr)as^gv55z2ux5n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['music-in-israel.herokuapp.com']
 
 
 # Application definition
@@ -76,13 +79,30 @@ WSGI_APPLICATION = "FinalProject.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         "NAME": "Finalproject_Lastdatabase",
+#         'USER': 'postgres',
+#         'PASSWORD': 'Azerty1234567890',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+        
+#     }
+# }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     "default": {
         'ENGINE': 'django.db.backends.postgresql',
-        "NAME": "Finalproject_Lastdatabase",
-        'USER': 'postgres',
-        'PASSWORD': 'Azerty1234567890',
-        'HOST': 'localhost',
+        "NAME": "d4ojnc2ie38gqb",
+        'USER': 'lfjgmlipikxrwk',
+        'PASSWORD': 'c6ff0c4cc18ee99a8fc3287086cb950b0f8042a7e83ba0b8e9a55e37c52cbad1',
+        'HOST': 'ec2-3-225-213-67.compute-1.amazonaws.com',
         'PORT': '5432',
         
     }
@@ -117,13 +137,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
+# STATIC_URL = "static/"
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = "/static/"
+django_heroku.settings(locals())
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_REDIRECT_URL = 'home' 
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'import django_heroku
-django_heroku.settings(locals())
+MEDIA_URL = '/media/'
+
